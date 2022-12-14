@@ -3,15 +3,19 @@ def showBasket(groceries, args):
     # [name, amount, price]
     for i in range(len(groceries)):
         for j in range(len(args)):
-            print(args[j] + ": " + groceries[i][j] + " ", end='')
+            print(args[j] + ": " + str(groceries[i][j]) + " ", end='')
         print("\n")
+    print("--------------------------------")
+    print("TOTAL: " + str(totalPrice(groceries)) + " zł.")
 
 # return list on info about product, that will be added to the list
 def addProduct(args):
     # empty list, can be usefull later
-    product = [0,0,0]
-    for i in range(len(args)):
-        product[i] = input(args[i] + ": ") 
+    # product = [str, float, float]
+    product = [0, 0, 0]
+    product[0] = str(input("Name: "))
+    for i in range(len(args)-1):
+        product[i+1] = float(input(args[i+1] + ": ")) 
     return product
 
 # searches for item in the groceries list, and returns it if exist
@@ -23,6 +27,12 @@ def removeProduct(groceries, name):
             return groceries[i]
     # in case product doesnt exist
     return "-1"
+
+def totalPrice(grocieries):
+    sum = 0.0
+    for i in range(len(groceries)):
+        sum += groceries[i][2]
+    return sum
 
 print(""" 
             GROCERY BASKET
